@@ -1,0 +1,168 @@
+{
+  "countries": [
+    {
+      "title": "Australia",
+      "id": "1"
+    },
+    {
+      "title": "Ukraine",
+      "id": "2"
+    },
+    {
+      "title": "USA",
+      "id": "3"
+    },
+    {
+      "title": "Great Britain",
+      "id": "4"
+    },
+    {
+      "title": "France",
+      "id": "5"
+    },
+    {
+      "title": "Marocco",
+      "id": "6"
+    },
+    {
+      "title": "Scotland",
+      "id": "7"
+    }
+  ],
+  "companies": [
+    {
+      "title": "Goit",
+      "description": "it school",
+      "status": "active",
+      "joinedDate": "10.03.2023",
+      "hasPromotions": false,
+      "categoryId": "1",
+      "categoryTitle": "It school",
+      "avatar": "https://i.pravatar.cc/50?u=a042581f4e29026704d",
+      "id": "1"
+    },
+    {
+      "title": "Scpectrum",
+      "description": "Hardware company",
+      "status": "pending",
+      "joinedDate": "02.03.2023",
+      "hasPromotions": false,
+      "categoryId": "2",
+      "categoryTitle": "Hardware",
+      "avatar": "https://i.pravatar.cc/50?u=a042581f4e29026703d",
+      "id": "2"
+    },
+    {
+      "title": "Rim200",
+      "description": "Sales computer and hardware",
+      "status": "notActive",
+      "joinedDate": "08.02.2022",
+      "hasPromotions": false,
+      "categoryId": "3",
+      "categoryTitle": "Sales",
+      "avatar": "https://i.pravatar.cc/50?u=a042581e4e29026704d",
+      "id": "3"
+    },
+    {
+      "title": "Globallogic",
+      "description": "it koach company",
+      "status": "active",
+      "joinedDate": "09.09.2018",
+      "hasPromotions": true,
+      "categoryId": "4",
+      "categoryTitle": "it coach company",
+      "avatar": "https://i.pravatar.cc/50?u=a042581f4e19026704d",
+      "id": "4"
+    },
+    {
+      "title": "Family company",
+      "description": "Sales animals",
+      "status": "pending",
+      "joinedDate": "6.08.2020",
+      "hasPromotions": true,
+      "categoryId": "5",
+      "categoryTitle": "family",
+      "avatar": "https://i.pravatar.cc/50?u=a042561f4e29026704d",
+      "id": "5"
+    },
+    {
+      "title": "Jane Fond",
+      "description": "QweQWe",
+      "status": "active",
+      "joinedDate": "2024-01-04",
+      "categoryId": "2",
+      "countryId": "",
+      "categoryTitle": "services",
+      "countryTitle": "",
+      "id": "hfMliHf"
+    }
+  ],
+  "summary-stats": {
+    "promotions": 520,
+    "categories": 4,
+    "newCompanies": 28,
+    "activeCompanies": 3
+  },
+  "summary-sales": [
+    {
+      "id": "1",
+      "companyId": "1",
+      "companyTitle": "John Smith",
+      "sold": 10,
+      "income": 10000
+    },
+    {
+      "id": "2",
+      "companyId": "2",
+      "companyTitle": "John Doe",
+      "sold": 29,
+      "income": 30000
+    }
+  ],
+  "promotions": [
+    {
+      "id": "1",
+      "title": "Costco Wholesale",
+      "description": "ipsum ad eiusmod amet consequat quis velit pariatur in qui qui velit sit. Exercitation deserunt ipsum est consectetur. Pariatur esse consequat voluptate eiusmod pariatur laboris laboris sint reprehenderit aute veniam amet. In id amet aliquip quis ea id dolore dolor irure enim voluptate sunt quis. Do Lorem commodo commodo sint officia adipisicing labore pariatur nostrud et aute officia. Exercitation fugiat mollit qui velit deserunt veniam aliqua quis id elit quis. Adipisicing minim tempor reprehenderit id dolor aliquip minim ut aute ex.",
+      "discount": 60,
+      "conpanyId": "1",
+      "companyTitle": "John Smith",
+      "avatar": "https://i.pravatar.cc/50?u=a042561f4e29026704d"
+    },
+    {
+      "id": "2",
+      "title": "Costco it cource",
+      "description": "Sint quis adipisicing ullamco exercitation culpa nostrud anim nulla sit laboris commodo ea. Cillum adipisicing mollit nisi commodo cillum minim officia aute mollit amet minim cupidatat commodo. Anim fugiat culpa mollit dolore Lorem. Culpa duis incididunt amet in est ut. Esse voluptate ad in ex. Sint occaecat et irure qui consectetur amet nostrud ut sit quis velit. Ut ullamco labore mollit nisi laborum amet veniam.",
+      "discount": 40,
+      "conpanyId": "2",
+      "companyTitle": "John Doe",
+      "avatar": "https://i.pravatar.cc/50?u=a042581e4e29026704d"
+    },
+    {
+      "title": "Beatifull sale",
+      "description": "Beatifull sale",
+      "discount": 20,
+      "companyId": "1",
+      "companyTitle": "Goit",
+      "id": "a86xz_g"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "title": "product"
+    },
+    {
+      "id": "2",
+      "title": "services"
+    },
+    {
+      "id": "3",
+      "title": "sales"
+    },
+    {
+      "id": "4",
+      "title": "logistics"
+    }
+  ]
+}

@@ -17,13 +17,15 @@ export default function CompanyInfo({ companyId }: CompanyInfoProps) {
     staleTime: 10 * 1000,
   });
 
+  console.log(company)
+
   if (!company) return null;
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col items-center p-7 gap-5 bg-gray-900 rounded">
         <div className="w-20 h-20 rounded-full bg-blue-500">
           {company.avatar && (
-            <Image fill src={company.avatar} alt="company avatar" />
+            <Image width={80} height={80} src={company.avatar} alt="company avatar" />
           )}
         </div>
         <p className="pb text-base font-semibold text-white">{company.title}</p>

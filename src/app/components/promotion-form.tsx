@@ -21,7 +21,7 @@ const initialValues: PromotionFieldValues = {
 };
 
 export interface PromotionFormProps {
-  companyId: string;
+  companyId: string|undefined;
   onSubmit?: (values: PromotionFieldValues) => void | Promise<void>;
 }
 
@@ -33,22 +33,29 @@ export default function PromotionForm({
 
   const { data: company } = useQuery({
     queryKey: ['companies', companyId],
-    queryFn: () => getCompany(companyId),
+    queryFn: () => getCompany(companyId!),
     staleTime: 10 * 1000,
     enabled: Boolean(companyId),
   });
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createPromotion,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['promotions', companyId],
-      });
+    onSuccess: (data) => {
+      queryClient.setQueryData(
+        ['promotions', companyId], (oldData: any[]) => {
+          if (oldData) {
+            return oldData.concat(data)
+          }
+         }
+      );
 
-      queryClient.invalidateQueries({
-        queryKey: ['promotions'],
-        exact: true,
-      });
+     queryClient.setQueryData(
+        ['promotions'], (oldData: any[]) => {
+          if (oldData) {
+            return oldData.concat(data)
+          }
+         }
+      );
     },
   });
 
@@ -56,8 +63,8 @@ export default function PromotionForm({
     await mutateAsync({
       ...values,
       discount: Number(values.discount) || 0,
-      companyId: company.id,
-      companyTitle: company.title,
+      companyId: company?.id||"",
+      companyTitle: company?.title||"",
     });
 
     if (onSubmit) {

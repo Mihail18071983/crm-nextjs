@@ -54,10 +54,16 @@ export interface Promotion {
   avatar?: string;
 }
 
-const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
+// const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
+
+
+// const buildUrl = (...paths: string[]) =>
+//   `https://${PROJECT_TOKEN}.mockapi.io/api/v1/${paths.join('/')}`;
 
 const buildUrl = (...paths: string[]) =>
-  `https://${PROJECT_TOKEN}.mockapi.io/api/v1/${paths.join('/')}`;
+  `http://localhost:4000/${paths.join('/')}`;
+
+
 
 const stringifyQueryParams = (params: Record<string, string>) =>
   new URLSearchParams(params).toString();
@@ -72,7 +78,7 @@ const sendRequest = async <T>(url: string, init?: RequestInit) => {
 };
 
 export const getSummaryStats = (init?: RequestInit) => {
-  return sendRequest<SummaryStats>(buildUrl('summary-stats', '1'), init);
+  return sendRequest<SummaryStats>(buildUrl('summary-stats'), init);
 };
 
 export const getSummarySales = (init?: RequestInit) => {

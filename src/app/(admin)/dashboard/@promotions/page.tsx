@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { getPromotions } from '@/lib/api';
 import SummaryTable from '@/app/components/summary-table';
 import SummaryTableHeader from '@/app/components/summary-table-header';
@@ -21,9 +22,14 @@ export default async function Page({}: PageProps) {
           </>
         }
       >
-        {data.map(({ id, title, companyTitle, discount }) => (
+        {data.map(({ id, title, companyTitle, discount, avatar }) => (
           <tr key={id}>
-            <SummaryTableCell>{companyTitle}</SummaryTableCell>
+            <SummaryTableCell>
+              <div className="flex items-center gap-2">
+                <Image width={20} height={20} src={avatar!} alt="avatar" />
+                <p>{companyTitle}</p>
+              </div>
+            </SummaryTableCell>
             <SummaryTableCell>{title}</SummaryTableCell>
             <SummaryTableCell align="center">{`-${discount}%`}</SummaryTableCell>
           </tr>
