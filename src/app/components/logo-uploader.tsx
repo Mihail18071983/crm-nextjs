@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 
@@ -21,16 +21,7 @@ export default function LogoUploader({
   selectedImage,
   ...rest
 }: LogoUploaderProps) {
-  // const [selectedImage, setSelectedImage] = useState('');
- 
-
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0];
-  //   if (file) {
-  //     setSelectedImage(URL.createObjectURL(file));   
-  //   }
-  // };
-
+  console.log('selectedImage', selectedImage);
   return (
     <div
       className={clsx(

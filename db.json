@@ -86,28 +86,16 @@
       "id": "5"
     },
     {
-      "title": "ррорр",
-      "description": "Beatifull sale",
-      "status": "pending",
-      "joinedDate": "2024-01-10",
-      "categoryId": "2",
-      "countryId": "5",
-      "avatar": "",
-      "categoryTitle": "services",
-      "countryTitle": "France",
-      "id": "wi9LRrI"
-    },
-    {
-      "title": "sss",
-      "description": "Beatifull sale",
-      "status": "notActive",
-      "joinedDate": "2024-01-04",
-      "categoryId": "2",
-      "countryId": "2",
-      "avatar": "",
-      "categoryTitle": "services",
-      "countryTitle": "Ukraine",
-      "id": "zJJxvKd"
+      "title": "c",
+      "description": "bog boss company",
+      "status": "active",
+      "joinedDate": "2024-01-03",
+      "categoryId": "",
+      "countryId": "",
+      "avatar": "blob:http://localhost:3000/31ac4d21-041c-4e94-bf3c-d32c1874ec75",
+      "categoryTitle": "",
+      "countryTitle": "",
+      "id": "ERuyqI9"
     }
   ],
   "summary-stats": {
@@ -176,11 +164,6 @@
     {
       "id": "4",
       "title": "logistics"
-    }
-  ],
-  "upload": [
-    {
-      "id": 1
     }
   ]
 }

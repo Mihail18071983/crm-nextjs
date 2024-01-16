@@ -41,14 +41,15 @@ export interface CompanyFormProps {
 export default function CompanyForm({ onSubmit }: CompanyFormProps) {
   const queryClient = useQueryClient();
 
-  const [selectedImage, setSelectedImage] = useState('');
+  const [imagePath, setImagePath] = useState('');
   const [selectedFile, setSelectedFile] = useState<File>();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    console.log('file', file);
     if (file) {
-      setSelectedImage(URL.createObjectURL(file));
       setSelectedFile(file);
+      setImagePath(URL.createObjectURL(file))
     }
   };
 
@@ -56,13 +57,16 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
     try {
       if (!selectedFile) return;
       const formData = new FormData();
-      formData.append('myImage', selectedFile);
-      await fetch('http://localhost:4000/upload', {
+      formData.append('image', selectedFile);
+      await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       })
         .then((response) => response.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          console.log(data);
+          setImagePath(data.imagePath);
+        })
         .catch((error) => console.error(error));
     } catch (error: any) {
       console.log(error.response?.data);
@@ -90,11 +94,7 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
     },
   });
 
-
-
-
   const handleSubmit = async (values: CompanyFieldValues) => {
-    console.log('avatar', values.avatar);
     await handleUpload();
     await mutateAsync({
       ...values,
@@ -102,14 +102,13 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
         categories?.find(({ id }) => id === values.categoryId)?.title ?? '',
       countryTitle:
         countries?.find(({ id }) => id === values.countryId)?.title ?? '',
-      avatar: values.avatar,
+      avatar: imagePath,
     });
 
     if (onSubmit) {
       onSubmit(values);
     }
   };
-
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -119,7 +118,7 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
           <div className="flex flex-col flex-1 gap-5">
             <LogoUploader
               onFileChange={handleFileChange}
-              selectedImage={selectedImage}
+              selectedImage={imagePath}
               label="Logo"
               placeholder="Upload photo"
             />
