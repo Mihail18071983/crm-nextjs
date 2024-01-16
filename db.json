@@ -86,16 +86,16 @@
       "id": "5"
     },
     {
-      "title": "c",
-      "description": "bog boss company",
+      "title": "fff",
+      "description": "Beatifull sale",
       "status": "active",
       "joinedDate": "2024-01-03",
-      "categoryId": "",
+      "categoryId": "2",
       "countryId": "",
-      "avatar": "blob:http://localhost:3000/31ac4d21-041c-4e94-bf3c-d32c1874ec75",
-      "categoryTitle": "",
+      "avatar": "blob:http://localhost:3000/78c2cf15-3c62-4786-bf50-d8b6b4b7471e",
+      "categoryTitle": "services",
       "countryTitle": "",
-      "id": "ERuyqI9"
+      "id": "tcWP-9R"
     }
   ],
   "summary-stats": {

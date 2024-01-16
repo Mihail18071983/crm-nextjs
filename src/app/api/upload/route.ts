@@ -14,11 +14,10 @@ export const POST = async (req: NextRequest) => {
   const filename = file.name.replaceAll(' ', '_');
   console.log('file name', filename);
   try {
-    await writeFile(
-      path.join(process.cwd(), 'public/images/' + filename),
-      buffer,
-    );
-    const imagePath = `/public/images/${filename}`;
+     const filePath = path.join('public/images', filename);
+    await writeFile(filePath, buffer);
+    
+   const imagePath = `${req.nextUrl.origin}/images/${filename}`;
     console.log('image path', imagePath);
     return NextResponse.json({
       Message: 'Success',
