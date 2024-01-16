@@ -3,29 +3,34 @@ import path from 'path';
 import { writeFile } from 'fs/promises';
 
 export const POST = async (req: NextRequest) => {
-  const formData = await req.formData();
-  const file = formData.get('image');
-  console.log('file', file);
-  if (!file || typeof file === 'string') {
-    return NextResponse.json({ error: 'No files received.' }, { status: 400 });
-  }
-
-  const buffer = Buffer.from(await file.arrayBuffer());
-  const filename = file.name.replaceAll(' ', '_');
-  console.log('file name', filename);
   try {
-     const filePath = path.join('public/images', filename);
+    const formData = await req.formData();
+    const file = formData.get('image');
+
+    if (!file || typeof file === 'string') {
+      return NextResponse.json(
+        { error: 'No files received.' },
+        { status: 400 },
+      );
+    }
+
+    const buffer = Buffer.from(await file.arrayBuffer());
+    const filename = file.name.replaceAll(' ', '_');
+
+    const relativeFilePath = path.join('images', filename);
+    const filePath = path.join(process.cwd(), 'public', relativeFilePath);
+
     await writeFile(filePath, buffer);
-    
-   const imagePath = `${req.nextUrl.origin}/images/${filename}`;
-    console.log('image path', imagePath);
+
+    const imagePath = `/${relativeFilePath}`;
+
     return NextResponse.json({
       Message: 'Success',
       status: 201,
       imagePath,
     });
   } catch (error) {
-    console.log('Error occured ', error);
+    console.error('Error occurred', error);
     return NextResponse.json({ Message: 'Failed', status: 500 });
   }
 };
