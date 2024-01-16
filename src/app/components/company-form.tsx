@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
@@ -21,6 +21,7 @@ export type CompanyFieldValues = {
   joinedDate: string;
   categoryId: string;
   countryId: string;
+  avatar?: string;
 };
 
 const initialValues: CompanyFieldValues = {
@@ -30,6 +31,7 @@ const initialValues: CompanyFieldValues = {
   joinedDate: '',
   categoryId: '',
   countryId: '',
+  avatar: '',
 };
 
 export interface CompanyFormProps {
@@ -38,6 +40,34 @@ export interface CompanyFormProps {
 
 export default function CompanyForm({ onSubmit }: CompanyFormProps) {
   const queryClient = useQueryClient();
+
+  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File>();
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file));
+      setSelectedFile(file);
+    }
+  };
+
+  const handleUpload = async () => {
+    try {
+      if (!selectedFile) return;
+      const formData = new FormData();
+      formData.append('myImage', selectedFile);
+      await fetch('http://localhost:4000/upload', {
+        method: 'POST',
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error(error));
+    } catch (error: any) {
+      console.log(error.response?.data);
+    }
+  };
 
   const { data: categories } = useQuery({
     queryKey: ['categories'],
@@ -60,13 +90,19 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
     },
   });
 
+
+
+
   const handleSubmit = async (values: CompanyFieldValues) => {
+    console.log('avatar', values.avatar);
+    await handleUpload();
     await mutateAsync({
       ...values,
       categoryTitle:
         categories?.find(({ id }) => id === values.categoryId)?.title ?? '',
       countryTitle:
         countries?.find(({ id }) => id === values.countryId)?.title ?? '',
+      avatar: values.avatar,
     });
 
     if (onSubmit) {
@@ -74,13 +110,19 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
     }
   };
 
+
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form className="flex flex-col gap-10">
         <p className="mb-0.5 text-xl">Add new company</p>
         <div className="flex gap-6">
           <div className="flex flex-col flex-1 gap-5">
-            <LogoUploader label="Logo" placeholder="Upload photo" />
+            <LogoUploader
+              onFileChange={handleFileChange}
+              selectedImage={selectedImage}
+              label="Logo"
+              placeholder="Upload photo"
+            />
             <InputField
               required
               label="Status"

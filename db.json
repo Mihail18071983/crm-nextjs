@@ -86,15 +86,28 @@
       "id": "5"
     },
     {
-      "title": "Jane Fond",
-      "description": "QweQWe",
-      "status": "active",
+      "title": "ррорр",
+      "description": "Beatifull sale",
+      "status": "pending",
+      "joinedDate": "2024-01-10",
+      "categoryId": "2",
+      "countryId": "5",
+      "avatar": "",
+      "categoryTitle": "services",
+      "countryTitle": "France",
+      "id": "wi9LRrI"
+    },
+    {
+      "title": "sss",
+      "description": "Beatifull sale",
+      "status": "notActive",
       "joinedDate": "2024-01-04",
       "categoryId": "2",
-      "countryId": "",
+      "countryId": "2",
+      "avatar": "",
       "categoryTitle": "services",
-      "countryTitle": "",
-      "id": "hfMliHf"
+      "countryTitle": "Ukraine",
+      "id": "zJJxvKd"
     }
   ],
   "summary-stats": {
@@ -163,6 +176,11 @@
     {
       "id": "4",
       "title": "logistics"
+    }
+  ],
+  "upload": [
+    {
+      "id": 1
     }
   ]
 }

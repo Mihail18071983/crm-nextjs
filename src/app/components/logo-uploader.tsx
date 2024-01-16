@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 
@@ -8,6 +8,8 @@ export interface LogoUploaderProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
   square?: boolean;
+  onFileChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  selectedImage?: string;
 }
 
 export default function LogoUploader({
@@ -15,8 +17,20 @@ export default function LogoUploader({
   label,
   placeholder,
   id,
+  onFileChange,
+  selectedImage,
   ...rest
 }: LogoUploaderProps) {
+  // const [selectedImage, setSelectedImage] = useState('');
+ 
+
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (file) {
+  //     setSelectedImage(URL.createObjectURL(file));   
+  //   }
+  // };
+
   return (
     <div
       className={clsx(
@@ -34,15 +48,27 @@ export default function LogoUploader({
           square && 'w-full',
         )}
       >
-        <Image
-          className="mb-1"
-          width={48}
-          height={48}
-          src="/icons/upload.svg"
-          alt="upload"
-        />
-        {placeholder && (
-          <p className="text-base text-gray-500">{placeholder}</p>
+        {selectedImage ? (
+          <Image
+            className="w-40 h-40 rounded-full"
+            width={160}
+            height={160}
+            src={selectedImage}
+            alt="upload"
+          />
+        ) : (
+          <>
+            <Image
+              className="mb-1"
+              width={48}
+              height={48}
+              src="/icons/upload.svg"
+              alt="upload"
+            />
+            {placeholder && (
+              <p className="text-base text-gray-500">{placeholder}</p>
+            )}
+          </>
         )}
         <input
           {...rest}
@@ -50,6 +76,7 @@ export default function LogoUploader({
           type="file"
           accept="image/*"
           className="hidden"
+          onChange={onFileChange}
         />
       </label>
     </div>

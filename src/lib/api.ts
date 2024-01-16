@@ -1,3 +1,5 @@
+
+
 export interface SummaryStats {
   promotions: number;
   categories: number;
@@ -139,3 +141,10 @@ export const createPromotion = async (
     },
   });
 };
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
