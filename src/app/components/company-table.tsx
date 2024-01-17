@@ -29,7 +29,7 @@ export default function CompanyTable({}: CompanyTableProps) {
         <thead>
           <tr>
             {headers.map((header, i) => (
-              <th key={i} className="pb-5 text-sm font-light text-gray-900">
+              <th  key={i} className="pb-5 text-sm font-light text-gray-900 text-start">
                 {header}
               </th>
             ))}
