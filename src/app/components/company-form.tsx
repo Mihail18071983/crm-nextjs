@@ -49,7 +49,7 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
     console.log('file', file);
     if (file) {
       setSelectedFile(file);
-      setImagePath(URL.createObjectURL(file))
+      setImagePath(URL.createObjectURL(file));
     }
   };
 
@@ -58,14 +58,19 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
       if (!selectedFile) return;
       const formData = new FormData();
       formData.append('image', selectedFile);
-      await fetch('/api/upload', {
+      return await fetch('/api/upload', {
         method: 'POST',
         body: formData,
+        // headers: {
+        //   'Content-Type': 'multipart/form-data',
+        // },
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log('data====>', data);
           setImagePath(data.imagePath);
+
+          return data
         })
         .catch((error) => console.error(error));
     } catch (error: any) {
@@ -95,7 +100,7 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
   });
 
   const handleSubmit = async (values: CompanyFieldValues) => {
-    await handleUpload();
+    const { imagePath } = await handleUpload();
     await mutateAsync({
       ...values,
       categoryTitle:
