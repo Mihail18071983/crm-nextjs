@@ -29,8 +29,8 @@ const initialValues: CompanyFieldValues = {
   description: '',
   status: CompanyStatus.Active,
   joinedDate: '',
-  categoryId: '',
-  countryId: '',
+  categoryId: '1',
+  countryId: '1',
   avatar: '',
 };
 
@@ -61,13 +61,9 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
       return await fetch('/api/upload', {
         method: 'POST',
         body: formData,
-        // headers: {
-        //   'Content-Type': 'multipart/form-data',
-        // },
       })
         .then((response) => response.json())
         .then((data) => {
-          // console.log('data====>', data);
           setImagePath(data.imagePath);
 
           return data

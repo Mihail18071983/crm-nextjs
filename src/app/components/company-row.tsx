@@ -17,7 +17,7 @@ export default function CompanyRow({ company }: CompanyRowProps) {
       </td>
       <td>
         <Link className='flex items-center gap-4' href={`/companies/${company.id}`}>
-          <Image className='rounded-full'
+          <Image className='rounded-full w-8 h-8'
             width={32}
             height={32}
             src={company.avatar || ''}

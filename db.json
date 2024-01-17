@@ -38,6 +38,8 @@
       "hasPromotions": false,
       "categoryId": "1",
       "categoryTitle": "It school",
+      "countryId": "3",
+      "countryTitle": "USA",
       "avatar": "https://i.pravatar.cc/50?u=a042581f4e29026704d",
       "id": "1"
     },
@@ -49,6 +51,8 @@
       "hasPromotions": false,
       "categoryId": "2",
       "categoryTitle": "Hardware",
+      "countryId": "2",
+      "countryTitle": "Ukraine",
       "avatar": "https://i.pravatar.cc/50?u=a042581f4e29026703d",
       "id": "2"
     },
@@ -60,6 +64,8 @@
       "hasPromotions": false,
       "categoryId": "3",
       "categoryTitle": "Sales",
+      "countryId": "1",
+      "countryTitle": "Australia",
       "avatar": "https://i.pravatar.cc/50?u=a042581e4e29026704d",
       "id": "3"
     },
@@ -71,6 +77,8 @@
       "hasPromotions": true,
       "categoryId": "4",
       "categoryTitle": "it coach company",
+      "countryId": "1",
+      "countryTitle": "Australia",
       "avatar": "https://i.pravatar.cc/50?u=a042581f4e19026704d",
       "id": "4"
     },
@@ -82,20 +90,34 @@
       "hasPromotions": true,
       "categoryId": "5",
       "categoryTitle": "family",
+      "countryId": "1",
+      "countryTitle": "Australia",
       "avatar": "https://i.pravatar.cc/50?u=a042561f4e29026704d",
       "id": "5"
     },
     {
-      "title": "fff",
-      "description": "Beatifull sale",
+      "title": "dog",
+      "description": "congue eu consequat ac felis",
       "status": "active",
+      "joinedDate": "2024-01-01",
+      "categoryId": "1",
+      "countryId": "1",
+      "avatar": "/images\\11.jpg",
+      "categoryTitle": "product",
+      "countryTitle": "Australia",
+      "id": "Kd3Pz2J"
+    },
+    {
+      "title": "cat",
+      "description": "et odio pellentesque diam volutpat commodo",
+      "status": "pending",
       "joinedDate": "2024-01-03",
       "categoryId": "2",
-      "countryId": "",
-      "avatar": "blob:http://localhost:3000/78c2cf15-3c62-4786-bf50-d8b6b4b7471e",
+      "countryId": "4",
+      "avatar": "/images\\12.jpg",
       "categoryTitle": "services",
-      "countryTitle": "",
-      "id": "tcWP-9R"
+      "countryTitle": "Great Britain",
+      "id": "DsoRnX7"
     }
   ],
   "summary-stats": {
