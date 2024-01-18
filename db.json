@@ -180,6 +180,15 @@
       "companyId": "1",
       "companyTitle": "Goit",
       "id": "a86xz_g"
+    },
+    {
+      "title": "lion sales",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
+      "discount": 50,
+      "avatar": "/images\\lion-1118467_640.jpg",
+      "companyId": "AAvj_DO",
+      "companyTitle": "Fox kids",
+      "id": "x8nEqmi"
     }
   ],
   "categories": [

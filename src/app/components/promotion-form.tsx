@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createPromotion, getCompany } from '@/lib/api';
+import { handleUpload, handleFileChange } from '@/lib/utils/handeFiles';
 import Button from '@/app/components/button';
 import InputField from '@/app/components/input-field';
 import LogoUploader from '@/app/components/logo-uploader';
@@ -12,16 +13,18 @@ export type PromotionFieldValues = {
   title: string;
   description: string;
   discount: string | number;
+  avatar: string;
 };
 
 const initialValues: PromotionFieldValues = {
   title: '',
   description: '',
   discount: '',
+  avatar: '',
 };
 
 export interface PromotionFormProps {
-  companyId: string|undefined;
+  companyId: string | undefined;
   onSubmit?: (values: PromotionFieldValues) => void | Promise<void>;
 }
 
@@ -30,6 +33,8 @@ export default function PromotionForm({
   onSubmit,
 }: PromotionFormProps) {
   const queryClient = useQueryClient();
+  const [imagePath, setImagePath] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File>();
 
   const { data: company } = useQuery({
     queryKey: ['companies', companyId],
@@ -41,30 +46,28 @@ export default function PromotionForm({
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createPromotion,
     onSuccess: (data) => {
-      queryClient.setQueryData(
-        ['promotions', companyId], (oldData: any[]) => {
-          if (oldData) {
-            return oldData.concat(data)
-          }
-         }
-      );
+      queryClient.setQueryData(['promotions', companyId], (oldData: any[]) => {
+        if (oldData) {
+          return oldData.concat(data);
+        }
+      });
 
-     queryClient.setQueryData(
-        ['promotions'], (oldData: any[]) => {
-          if (oldData) {
-            return oldData.concat(data)
-          }
-         }
-      );
+      queryClient.setQueryData(['promotions'], (oldData: any[]) => {
+        if (oldData) {
+          return oldData.concat(data);
+        }
+      });
     },
   });
 
   const handleSubmit = async (values: PromotionFieldValues) => {
+    const { imagePath } = await handleUpload(selectedFile!, setImagePath);
     await mutateAsync({
       ...values,
       discount: Number(values.discount) || 0,
-      companyId: company?.id||"",
-      companyTitle: company?.title||"",
+      companyId: company?.id || '',
+      companyTitle: company?.title || '',
+      avatar: imagePath,
     });
 
     if (onSubmit) {
@@ -91,7 +94,13 @@ export default function PromotionForm({
             placeholder="Discount"
             name="discount"
           />
-          <LogoUploader square label="Image" placeholder="Upload photo" />
+          <LogoUploader
+            onFileChange={() => handleFileChange(event,setSelectedFile, setImagePath)}
+            selectedImage={imagePath}
+            square
+            label="Image"
+            placeholder="Upload photo"
+          />
         </div>
         <Button type="submit" disabled={isPending}>
           Add promotion
