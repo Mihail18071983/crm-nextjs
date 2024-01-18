@@ -9,6 +9,7 @@ import {
   getCategories,
   getCountries,
 } from '@/lib/api';
+import { handleUpload, handleFileChange } from '@/lib/utils/handeFiles';
 import Button from '@/app/components/button';
 import InputField from '@/app/components/input-field';
 import LogoUploader from '@/app/components/logo-uploader';
@@ -44,36 +45,6 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
   const [imagePath, setImagePath] = useState('');
   const [selectedFile, setSelectedFile] = useState<File>();
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    console.log('file', file);
-    if (file) {
-      setSelectedFile(file);
-      setImagePath(URL.createObjectURL(file));
-    }
-  };
-
-  const handleUpload = async () => {
-    try {
-      if (!selectedFile) return;
-      const formData = new FormData();
-      formData.append('image', selectedFile);
-      return await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setImagePath(data.imagePath);
-
-          return data
-        })
-        .catch((error) => console.error(error));
-    } catch (error: any) {
-      console.log(error.response?.data);
-    }
-  };
-
   const { data: categories } = useQuery({
     queryKey: ['categories'],
     queryFn: getCategories,
@@ -96,7 +67,7 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
   });
 
   const handleSubmit = async (values: CompanyFieldValues) => {
-    const { imagePath } = await handleUpload();
+    const { imagePath } = await handleUpload(selectedFile!, setImagePath);
     await mutateAsync({
       ...values,
       categoryTitle:
@@ -118,7 +89,7 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
         <div className="flex gap-6">
           <div className="flex flex-col flex-1 gap-5">
             <LogoUploader
-              onFileChange={handleFileChange}
+           onFileChange={(event) => handleFileChange(event,setSelectedFile, setImagePath)}
               selectedImage={imagePath}
               label="Logo"
               placeholder="Upload photo"

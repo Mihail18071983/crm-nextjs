@@ -130,6 +130,18 @@
       "categoryTitle": "services",
       "countryTitle": "Great Britain",
       "id": "AAvj_DO"
+    },
+    {
+      "title": "WindElectro",
+      "description": "Alternative energy",
+      "status": "suspended",
+      "joinedDate": "2024-01-03",
+      "categoryId": "3",
+      "countryId": "1",
+      "avatar": "/images\\wind-turbine-clean-energy.jpg",
+      "categoryTitle": "sales",
+      "countryTitle": "Australia",
+      "id": "3zBO1Or"
     }
   ],
   "summary-stats": {
