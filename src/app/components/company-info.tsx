@@ -17,8 +17,6 @@ export default function CompanyInfo({ companyId }: CompanyInfoProps) {
     staleTime: 10 * 1000,
   });
 
-  console.log(company)
-
   if (!company) return null;
   return (
     <div className="flex flex-col gap-5">

@@ -1,11 +1,8 @@
 'use client';
-
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getCompanies } from '@/lib/api';
+import React, { useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Company, getCompanies } from '@/lib/api';
 import CompanyRow from '@/app/components/company-row';
-
-export interface CompanyTableProps {}
 
 const headers = [
   'Category',
@@ -16,11 +13,33 @@ const headers = [
   'Joined date',
 ];
 
-export default function CompanyTable({}: CompanyTableProps) {
+export default function CompanyTable() {
+  const [items, setItems] = useState<Company[]>([]);
+
   const { data } = useQuery({
     queryKey: ['companies'],
-    queryFn: () => getCompanies(),
+    queryFn: () => {
+      getCompanies();
+    },
     staleTime: 10 * 1000,
+  });
+
+  useEffect(() => {
+    if (data) {
+      setItems(data);
+    }
+  }, [data]);
+
+  const queryClient = useQueryClient();
+
+  queryClient.fetchQuery({
+    queryKey: ['filteredCompanies'],
+    queryFn: () => queryClient.getQueryData(['filteredCompanies']) || null,
+  });
+
+  const { data: filteredCompanies } = useQuery({
+    queryKey: ['filteredCompanies'],
+    queryFn: () => queryClient.getQueryData(['filteredCompanies']),
   });
 
   return (
@@ -29,14 +48,17 @@ export default function CompanyTable({}: CompanyTableProps) {
         <thead>
           <tr>
             {headers.map((header, i) => (
-              <th  key={i} className="pb-5 text-sm font-light text-gray-900 text-start">
+              <th
+                key={i}
+                className="pb-5 text-sm font-light text-gray-900 text-start"
+              >
                 {header}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {data?.map((company) => (
+          {((filteredCompanies as Company[]) ?? items)?.map((company) => (
             <CompanyRow key={company.id} company={company} />
           ))}
         </tbody>

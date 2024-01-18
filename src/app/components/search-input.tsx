@@ -4,17 +4,22 @@ import Image from 'next/image';
 export interface SearchInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   onSearchClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function SearchInput({
+  value,
   onSearchClick,
+  onChange,
   ...rest
 }: SearchInputProps) {
   return (
     <div className="relative w-96">
       <input
         {...rest}
+        value={value}
         type="text"
+        onChange={onChange}
         className="text-sm flex-1 py-3 pl-3 pr-11 w-full h-11 rounded border border-gray-300 bg-gray-50"
       />
       <button
