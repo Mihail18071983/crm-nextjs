@@ -95,7 +95,7 @@ export default function PromotionForm({
             name="discount"
           />
           <LogoUploader
-            onFileChange={() => handleFileChange(event,setSelectedFile, setImagePath)}
+            onFileChange={(event) => handleFileChange(event,setSelectedFile, setImagePath)}
             selectedImage={imagePath}
             square
             label="Image"
