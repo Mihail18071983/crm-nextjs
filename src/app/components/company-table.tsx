@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Company, getCompanies } from '@/lib/api';
 import CompanyRow from '@/app/components/company-row';
+import { spawn } from 'child_process';
 
 const headers = [
   'Category',
@@ -16,7 +17,7 @@ const headers = [
 export default function CompanyTable() {
   const [items, setItems] = useState<Company[]>([]);
 
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ['companies'],
     queryFn: () => {
       getCompanies();
@@ -44,25 +45,29 @@ export default function CompanyTable() {
 
   return (
     <div className="py-8 px-10 bg-gray-100">
-      <table className="table-auto w-full border-separate border-spacing-y-2">
-        <thead>
-          <tr>
-            {headers.map((header, i) => (
-              <th
-                key={i}
-                className="pb-5 text-sm font-light text-gray-900 text-start"
-              >
-                {header}
-              </th>
+      {isPending ? (
+        <div>Loading...</div>
+      ) : (
+        <table className="table-auto w-full border-separate border-spacing-y-2">
+          <thead>
+            <tr>
+              {headers.map((header, i) => (
+                <th
+                  key={i}
+                  className="pb-5 text-sm font-light text-gray-900 text-start"
+                >
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {((filteredCompanies as Company[]) ?? items)?.map((company) => (
+              <CompanyRow key={company.id} company={company} />
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {((filteredCompanies as Company[]) ?? items)?.map((company) => (
-            <CompanyRow key={company.id} company={company} />
-          ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
