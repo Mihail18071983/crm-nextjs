@@ -1,22 +1,23 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Toolbar from '@/app/components/toolbar';
 import SearchInput from '@/app/components/search-input';
 import AddPromotionButton from '@/app/components/add-promotion-button';
-import { getCompanies } from '@/lib/api';
+import { getPromotions } from '@/lib/api';
 
 export interface PageProps {
   params: { id: string };
 }
 
 export default function Page({ params }: PageProps) {
+  const queryClient = useQueryClient();
   const [searchQuery, setsearchQuery] = useState<string>('');
 
-  const { data: companies } = useQuery({
-    queryKey: ['companies'],
-    queryFn: getCompanies,
+  const { data: promotions } = useQuery({
+    queryKey: ['promotions', params.id],
+    queryFn: () => getPromotions({ companyId: params.id }),
     staleTime: 10 * 1000,
   });
 
@@ -24,21 +25,31 @@ export default function Page({ params }: PageProps) {
     setsearchQuery(e.target.value);
   };
 
-  const filteredCompanies = useMemo(() => {
-    if (!searchQuery) {
-      return companies;
+  const getFilteredPromotions = useMemo(() => {
+    if (searchQuery === '') {
+      return promotions;
     }
-    return companies?.filter((company) =>
-      company.title.toLowerCase().includes(searchQuery.toLowerCase()),
+    const filtered = promotions?.filter((promotion) =>
+      promotion.title.toLowerCase().includes(searchQuery.toLowerCase()),
     );
-  }, [companies, searchQuery]);
+    return filtered;
+  }, [promotions, searchQuery]);
 
-  const onClick = ()=>{
-    console.log(filteredCompanies);
-  }
+  const onClick = () => {
+    console.log('onClick');
+    queryClient.setQueryData(
+      ['filteredPromotions', params.id],
+      getFilteredPromotions,
+    );
+    queryClient.invalidateQueries({queryKey: ['filteredPromotions']});
+  };
   return (
     <Toolbar action={<AddPromotionButton companyId={params.id} />}>
-      <SearchInput value={searchQuery} onChange={onFilterBySearch} onSearchClick={onClick} />
+      <SearchInput
+        value={searchQuery}
+        onChange={onFilterBySearch}
+        onSearchClick={onClick}
+      />
     </Toolbar>
   );
 }

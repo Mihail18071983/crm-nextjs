@@ -168,48 +168,58 @@
   ],
   "promotions": [
     {
-      "id": "1",
-      "title": "Costco Wholesale",
-      "description": "ipsum ad eiusmod amet consequat quis velit pariatur in qui qui velit sit. Exercitation deserunt ipsum est consectetur. Pariatur esse consequat voluptate eiusmod pariatur laboris laboris sint reprehenderit aute veniam amet. In id amet aliquip quis ea id dolore dolor irure enim voluptate sunt quis. Do Lorem commodo commodo sint officia adipisicing labore pariatur nostrud et aute officia. Exercitation fugiat mollit qui velit deserunt veniam aliqua quis id elit quis. Adipisicing minim tempor reprehenderit id dolor aliquip minim ut aute ex.",
-      "discount": 60,
-      "conpanyId": "1",
-      "companyTitle": "John Smith",
-      "avatar": "https://i.pravatar.cc/50?u=a042561f4e29026704d"
+      "title": "best proposition",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et",
+      "discount": 30,
+      "avatar": "/images\\fox-715588_640.jpg",
+      "companyId": "4",
+      "companyTitle": "Globallogic",
+      "id": 1
     },
     {
-      "id": "2",
-      "title": "Costco it cource",
-      "description": "Sint quis adipisicing ullamco exercitation culpa nostrud anim nulla sit laboris commodo ea. Cillum adipisicing mollit nisi commodo cillum minim officia aute mollit amet minim cupidatat commodo. Anim fugiat culpa mollit dolore Lorem. Culpa duis incididunt amet in est ut. Esse voluptate ad in ex. Sint occaecat et irure qui consectetur amet nostrud ut sit quis velit. Ut ullamco labore mollit nisi laborum amet veniam.",
-      "discount": 40,
-      "conpanyId": "2",
-      "companyTitle": "John Doe",
-      "avatar": "https://i.pravatar.cc/50?u=a042581e4e29026704d"
-    },
-    {
-      "title": "Beatifull sale",
-      "description": "Beatifull sale",
-      "discount": 20,
+      "title": "best seller",
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem",
+      "discount": 90,
+      "avatar": "/images\\sea-2361247_640.jpg",
       "companyId": "1",
       "companyTitle": "Goit",
-      "id": "a86xz_g"
+      "id": 2
     },
     {
-      "title": "lion sales",
-      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
-      "discount": 50,
+      "title": "Rear Lion",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et",
+      "discount": 78,
       "avatar": "/images\\lion-1118467_640.jpg",
-      "companyId": "AAvj_DO",
-      "companyTitle": "Fox kids",
-      "id": "x8nEqmi"
+      "companyId": "4",
+      "companyTitle": "Globallogic",
+      "id": 3
     },
     {
-      "title": "kitty is sold",
-      "description": "Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por",
-      "discount": 10,
+      "title": "wind energy",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et",
+      "discount": 60,
+      "avatar": "/images\\wind-turbine-clean-energy.jpg",
+      "companyId": "4",
+      "companyTitle": "Globallogic",
+      "id": 4
+    },
+    {
+      "title": "Sed ut perspiciatis unde omnis",
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt",
+      "discount": 18,
+      "avatar": "/images\\elephant-2870777_640.jpg",
+      "companyId": "1",
+      "companyTitle": "Goit",
+      "id": 5
+    },
+    {
+      "title": "Sed ut",
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit volu",
+      "discount": 56,
       "avatar": "/images\\12.jpg",
-      "companyId": "AAvj_DO",
-      "companyTitle": "Fox kids",
-      "id": "dBt0kT4"
+      "companyId": "1",
+      "companyTitle": "Goit",
+      "id": 6
     }
   ],
   "categories": [

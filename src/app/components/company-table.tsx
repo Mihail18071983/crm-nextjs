@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Company, getCompanies } from '@/lib/api';
 import CompanyRow from '@/app/components/company-row';
-import { spawn } from 'child_process';
+
 
 const headers = [
   'Category',
