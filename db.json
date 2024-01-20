@@ -220,6 +220,15 @@
       "companyId": "1",
       "companyTitle": "Goit",
       "id": 6
+    },
+    {
+      "title": "The quick, brown fox jumps over",
+      "description": "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs.",
+      "discount": 10,
+      "avatar": "/images\\11.jpg",
+      "companyId": "1",
+      "companyTitle": "Goit",
+      "id": 7
     }
   ],
   "categories": [

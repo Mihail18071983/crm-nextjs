@@ -8,7 +8,7 @@ export interface PromotionProps {
 
 export default function Promotion({ promotion }: PromotionProps) {
   return (
-    <div className="rounded overflow-hidden	bg-gray-100">
+    <div className="rounded overflow-hidden">
       <div className="relative w-full h-40 bg-gray-300">
         {promotion.avatar && (
           <Image fill src={promotion.avatar} alt="promotion avatar" />

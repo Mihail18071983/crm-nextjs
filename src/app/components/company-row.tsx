@@ -11,10 +11,10 @@ export interface CompanyRowProps {
 
 export default function CompanyRow({ company }: CompanyRowProps) {
   return (
-    <tr className="h-14  text-gray-900 bg-white alig-center  mb-2 last:mb-0">
+    <tr className="h-14   text-gray-900 bg-white alig-center  mb-2 last:mb-0">
       <td
         className={clsx(
-          'w-[15%] text-xs font-medium text-blue-700 rounded-l border-l-4',
+          'w-[15%] text-xs font-medium text-blue-700 rounded-l border-l-4 pl-2',
           company.status === 'active' && 'border-green-700',
           company.status === 'pending' && 'border-yellow-700',
           company.status === 'suspended' && 'border-blue-700',
