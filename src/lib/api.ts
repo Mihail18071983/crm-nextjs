@@ -56,15 +56,9 @@ export interface Promotion {
   avatar?: string;
 }
 
-// const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
-
-
-// const buildUrl = (...paths: string[]) =>
-//   `https://${PROJECT_TOKEN}.mockapi.io/api/v1/${paths.join('/')}`;
 
 const buildUrl = (...paths: string[]) =>
   `http://localhost:4000/${paths.join('/')}`;
-
 
 
 const stringifyQueryParams = (params: Record<string, string>) =>
@@ -135,6 +129,20 @@ export const createPromotion = async (
   return sendRequest<Promotion>(buildUrl('promotions'), {
     method: 'POST',
     body: JSON.stringify(data),
+    headers: {
+      ...(init && init.headers),
+      'content-type': 'application/json',
+    },
+  });
+};
+
+export const deleteCompany = async (
+  id: string,
+  init?: RequestInit,
+) => {
+  return sendRequest<Company>(buildUrl('companies', id), {
+    ...init,
+    method: 'DELETE',
     headers: {
       ...(init && init.headers),
       'content-type': 'application/json',

@@ -83,19 +83,6 @@
       "id": "4"
     },
     {
-      "title": "Family company",
-      "description": "Sales animals",
-      "status": "pending",
-      "joinedDate": "6.08.2020",
-      "hasPromotions": true,
-      "categoryId": "5",
-      "categoryTitle": "family",
-      "countryId": "1",
-      "countryTitle": "Australia",
-      "avatar": "https://i.pravatar.cc/50?u=a042561f4e29026704d",
-      "id": "5"
-    },
-    {
       "title": "dog",
       "description": "congue eu consequat ac felis",
       "status": "active",
@@ -106,42 +93,6 @@
       "categoryTitle": "product",
       "countryTitle": "Australia",
       "id": "Kd3Pz2J"
-    },
-    {
-      "title": "cat",
-      "description": "et odio pellentesque diam volutpat commodo",
-      "status": "pending",
-      "joinedDate": "2024-01-03",
-      "categoryId": "2",
-      "countryId": "4",
-      "avatar": "/images\\12.jpg",
-      "categoryTitle": "services",
-      "countryTitle": "Great Britain",
-      "id": "DsoRnX7"
-    },
-    {
-      "title": "Fox kids",
-      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem",
-      "status": "pending",
-      "joinedDate": "2024-01-03",
-      "categoryId": "2",
-      "countryId": "4",
-      "avatar": "/images\\fox-715588_640.jpg",
-      "categoryTitle": "services",
-      "countryTitle": "Great Britain",
-      "id": "AAvj_DO"
-    },
-    {
-      "title": "WindElectro",
-      "description": "Alternative energy",
-      "status": "suspended",
-      "joinedDate": "2024-01-03",
-      "categoryId": "3",
-      "countryId": "1",
-      "avatar": "/images\\wind-turbine-clean-energy.jpg",
-      "categoryTitle": "sales",
-      "countryTitle": "Australia",
-      "id": "3zBO1Or"
     }
   ],
   "summary-stats": {

@@ -4,12 +4,14 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import StatusLabel from '@/app/components/status-label';
 import { Company } from '@/lib/api';
+import delIcon from "../../../public/icons/backspace.svg"
 
 export interface CompanyRowProps {
   company: Company;
+  onDelete: () => void;
 }
 
-export default function CompanyRow({ company }: CompanyRowProps) {
+export default function CompanyRow({ company, onDelete }: CompanyRowProps) {
   return (
     <tr className="h-14   text-gray-900 bg-white alig-center  mb-2 last:mb-0">
       <td
@@ -62,6 +64,9 @@ export default function CompanyRow({ company }: CompanyRowProps) {
       <td>{company.countryTitle}</td>
       <td className="rounded-r">
         {new Date(company.joinedDate).toLocaleDateString('uk-UA')}
+      </td>
+      <td>
+        <button className='align-middle' type='button' onClick={onDelete}><Image src={delIcon} alt="delIcon"/></button>
       </td>
     </tr>
   );

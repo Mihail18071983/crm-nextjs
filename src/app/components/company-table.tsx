@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Company, getCompanies } from '@/lib/api';
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
+import { Company, getCompanies, deleteCompany } from '@/lib/api';
 import CompanyRow from '@/app/components/company-row';
 
 
@@ -33,6 +33,28 @@ export default function CompanyTable() {
 
   const queryClient = useQueryClient();
 
+  const deleteMutation = useMutation({
+    // Mutation function
+    mutationFn: deleteCompany,
+    // onSuccess callback
+    onSuccess: () => {
+      // Invalidate and refetch to update the list
+      queryClient.invalidateQueries({queryKey: ['companies']});
+    },
+    // onError callback
+    onError: (error, variables, context) => {
+      alert(`Delete failed for company with id: ${variables}`);
+    },
+  });
+
+
+   const handleDelete = (id: string) => {
+ 
+    if (window.confirm('Are you sure you want to delete this company?')) {
+      deleteMutation.mutate(id); 
+    }
+  };
+
   queryClient.fetchQuery({
     queryKey: ['filteredCompanies'],
     queryFn: () => queryClient.getQueryData(['filteredCompanies']) || null,
@@ -63,7 +85,7 @@ export default function CompanyTable() {
           </thead>
           <tbody>
             {((filteredCompanies as Company[]) ?? items)?.map((company) => (
-              <CompanyRow key={company.id} company={company} />
+              <CompanyRow onDelete={()=>handleDelete(company.id)} key={company.id} company={company} />
             ))}
           </tbody>
         </table>
