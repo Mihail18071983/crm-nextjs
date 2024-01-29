@@ -7,9 +7,14 @@ const nextConfig = {
                 hostname: 'i.pravatar.cc',
                 port: '',
                 pathname: '/**',
+            },
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                port: '',
+                pathname: '/**',
             }
-        ],
-        domains: ['localhost'],
+        ]
     },
 }
 
