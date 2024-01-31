@@ -31,24 +31,11 @@
   ],
   "companies": [
     {
-      "title": "Goit",
-      "description": "sales",
-      "status": "active",
-      "joinedDate": "10.03.2023",
-      "hasPromotions": false,
-      "categoryId": "1",
-      "categoryTitle": "sales",
-      "countryId": "3",
-      "countryTitle": "USA",
-      "avatar": "https://i.pravatar.cc/50?u=a042581f4e29026704d",
-      "id": "1"
-    },
-    {
       "title": "Scpectrum",
       "description": "Hardware company",
       "status": "pending",
       "joinedDate": "02.03.2023",
-      "hasPromotions": false,
+      "hasPromotions": true,
       "categoryId": "2",
       "categoryTitle": "product",
       "countryId": "2",
@@ -61,7 +48,7 @@
       "description": "Sales computer and hardware",
       "status": "notActive",
       "joinedDate": "08.02.2022",
-      "hasPromotions": false,
+      "hasPromotions": true,
       "categoryId": "3",
       "categoryTitle": "services",
       "countryId": "1",
@@ -92,7 +79,8 @@
       "avatar": "/images\\11.jpg",
       "categoryTitle": "product",
       "countryTitle": "Australia",
-      "id": "Kd3Pz2J"
+      "id": "Kd3Pz2J",
+      "hasPromotions": true
     }
   ],
   "summary-stats": {
@@ -180,6 +168,33 @@
       "companyId": "1",
       "companyTitle": "Goit",
       "id": 7
+    },
+    {
+      "title": "Best promo",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et",
+      "discount": 10,
+      "avatar": "/images\\photo.jpg",
+      "companyId": "3",
+      "companyTitle": "Rim200",
+      "id": 8
+    },
+    {
+      "title": "XXXX",
+      "description": "Sale fpr discount",
+      "discount": 80,
+      "avatar": "/images\\star.jpg",
+      "companyId": "2",
+      "companyTitle": "Scpectrum",
+      "id": 9
+    },
+    {
+      "title": "Abra cadabra",
+      "description": "Beatifull sale",
+      "discount": 70,
+      "avatar": "/images\\10.jpg",
+      "companyId": "Kd3Pz2J",
+      "companyTitle": "dog",
+      "id": 10
     }
   ],
   "categories": [

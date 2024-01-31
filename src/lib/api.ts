@@ -1,5 +1,3 @@
-
-
 export interface SummaryStats {
   promotions: number;
   categories: number;
@@ -56,10 +54,8 @@ export interface Promotion {
   avatar?: string;
 }
 
-
 const buildUrl = (...paths: string[]) =>
   `http://localhost:4000/${paths.join('/')}`;
-
 
 const stringifyQueryParams = (params: Record<string, string>) =>
   new URLSearchParams(params).toString();
@@ -122,6 +118,26 @@ export const createCompany = async (
   });
 };
 
+export const editCompany = async ({
+  id,
+  data,
+  init = {},
+}: {
+  id: string;
+  data: Pick<Company, 'hasPromotions'>;
+  init?: RequestInit;
+}) => {
+  return sendRequest<Company>(buildUrl('companies', id), {
+    ...init,
+    method: 'PATCH',
+    body: JSON.stringify({ hasPromotions: data.hasPromotions }),
+    headers: {
+      ...(init && init.headers),
+      'content-type': 'application/json',
+    },
+  });
+};
+
 export const createPromotion = async (
   data: Omit<Promotion, 'id'>,
   init?: RequestInit,
@@ -136,10 +152,7 @@ export const createPromotion = async (
   });
 };
 
-export const deleteCompany = async (
-  id: string,
-  init?: RequestInit,
-) => {
+export const deleteCompany = async (id: string, init?: RequestInit) => {
   return sendRequest<Company>(buildUrl('companies', id), {
     ...init,
     method: 'DELETE',
@@ -155,4 +168,3 @@ export const config = {
     bodyParser: false,
   },
 };
-

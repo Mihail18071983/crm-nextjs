@@ -49,11 +49,6 @@ export default function CompanyRow({ company, onDelete }: CompanyRowProps) {
       </td>
       <td className="w-[15%]">
         <div
-          onClick={() => {
-            router.push(`/companies/${company.id}/edit`, {
-              scroll: false,
-            });
-          }}
           className="inline-flex items-center gap-1 cursor-pointer"
         >
           <Image

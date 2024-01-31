@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
-import { useQuery } from '@tanstack/react-query';
-import { getCompany } from '@/lib/api';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { getCompany, getPromotions, editCompany, Promotion } from '@/lib/api';
 import StatusLabel from '@/app/components/status-label';
 
 export interface CompanyInfoProps {
@@ -11,19 +11,58 @@ export interface CompanyInfoProps {
 }
 
 export default function CompanyInfo({ companyId }: CompanyInfoProps) {
+  const queryQlient = useQueryClient();
+
   const { data: company } = useQuery({
     queryKey: ['companies', companyId],
     queryFn: () => getCompany(companyId),
     staleTime: 10 * 1000,
   });
 
+  const { data: promotions, isPending } = useQuery<Promotion[]>({
+    queryKey: ['promotions', companyId],
+    queryFn: async () => {
+      return getPromotions({ companyId });
+    },
+    staleTime: 10 * 1000,
+  });
+  console.log('Promotions', promotions);
+
+  const updateCompany = useMutation({
+    mutationFn: editCompany,
+    onSuccess: () => {
+      queryQlient.invalidateQueries({ queryKey: ['companies', companyId] });
+    },
+    onError: (error, variables, context) => {
+      alert(`Delete failed for company with id: ${variables?.id}`);
+    },
+  });
+
+  useEffect(() => {
+  if (companyId && promotions) {
+    updateCompany.mutate({
+      id: companyId,
+      data: { hasPromotions: promotions.length > 0 },
+    });
+  }
+}, [promotions, companyId]);
+
+ 
   if (!company) return null;
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col items-center p-7 gap-5 bg-gray-900 rounded">
+      <div
+        className="flex flex-col items-center p-7 gap-5 bg-gray-900 rounded cursor-pointer"
+      >
         <div className="w-20 h-20 rounded-full bg-blue-500">
           {company.avatar && (
-            <Image className='rounded-full w-full h-full' width={80} height={80} src={company.avatar} alt="company avatar" />
+            <Image
+              className="rounded-full w-full h-full"
+              width={80}
+              height={80}
+              src={company.avatar}
+              alt="company avatar"
+            />
           )}
         </div>
         <p className="pb text-base font-semibold text-white">{company.title}</p>
