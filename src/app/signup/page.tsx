@@ -1,64 +1,62 @@
-"use client";
+'use client';
 
-import { Mail, Lock, User } from "lucide-react";
-import Image from "next/image";
-import React, { useState } from "react";
-import bg from "../../../public/images/bg-2.png";
-import logo from "../../../public/images/logo.png";
-import google from "../../../public/icons/google2.svg";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { Mail, Lock, User } from 'lucide-react';
+import Image from 'next/image';
+import React, { useState } from 'react';
+import bg from '../../../public/images/bg-2.png';
+import logo from '../../../public/images/logo.png';
+import google from '../../../public/icons/google2.svg';
+import axios from 'axios';
+import { signIn } from 'next-auth/react';
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     return setUser((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     console.log(user);
     try {
       if (!user.name || !user.email || !user.password) {
-        setError("please fill all the fields");
+        setError('please fill all the fields');
         return;
       }
       const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
       if (!emailRegex.test(user.email)) {
-        setError("invalid email id");
+        setError('invalid email id');
         return;
       }
-      const res = await axios.post("/api/register", user);
+      const res = await axios.post('/api/register', user);
       console.log(res.data);
       if (res.status == 200 || res.status == 201) {
-        console.log("user added successfully");
-        setError("");
-        await signIn("credentials", {
+        console.log('user added successfully');
+        setError('');
+        await signIn('credentials', {
           email: user.email,
           password: user.password,
-          callbackUrl: "/dashboard",
+          callbackUrl: '/dashboard',
         });
       }
     } catch (error) {
       console.log(error);
-      setError("");
+      setError('');
     } finally {
       setLoading(false);
 
       setUser({
-        name: "",
-        email: "",
-        password: "",
+        name: '',
+        email: '',
+        password: '',
       });
     }
   };
@@ -67,8 +65,8 @@ const Signup = () => {
       className="min-h-screen"
       style={{
         backgroundImage: `url("/background.png")`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
       }}
     >
       <div className="grid place-items-center mx-auto max-w-4xl w-full py-10 min-h-screen">
@@ -95,7 +93,7 @@ const Signup = () => {
                 <div className="bg-white flex justify-start items-start py-3 px-4 rounded text-slate-600 text-lg mt-1">
                   <User className="w-7 h-7 text-[#A1BDFD]" />
                   <input
-                    type={"text"}
+                    type={'text'}
                     placeholder="John Doe"
                     name="name"
                     className="outline-none w-full px-4"
@@ -109,7 +107,7 @@ const Signup = () => {
                 <div className="bg-white flex justify-start items-start py-3 px-4 rounded text-slate-600 text-lg mt-1">
                   <Mail className="w-7 h-7 text-[#A1BDFD]" />
                   <input
-                    type={"email"}
+                    type={'email'}
                     placeholder="example@123.com"
                     name="email"
                     className="outline-none w-full px-4"
@@ -123,7 +121,7 @@ const Signup = () => {
                 <div className="bg-white flex justify-start items-start py-3 px-4 rounded text-slate-600 text-lg mt-1">
                   <Lock className="w-7 h-7 text-[#A1BDFD]" />
                   <input
-                    type={"password"}
+                    type={'password'}
                     placeholder="**********"
                     name="password"
                     className="outline-none w-full px-4"
@@ -137,7 +135,7 @@ const Signup = () => {
                     type="submit"
                     className="bg-[#5D7DF3] text-white text-lg w-full px-8 py-3 rounded-md uppercase font-semibold"
                   >
-                    {loading ? "Processing" : " Register"}
+                    {loading ? 'Processing' : ' Register'}
                   </button>
                 </div>
                 <div className="flex justify-center w-full items-center gap-3 py-3">
@@ -145,11 +143,12 @@ const Signup = () => {
                   <div className="mt-3">or</div>
                   <div className="border-b border-gray-800 py-2 w-full px-6" />
                 </div>
-
-                <div onClick={()=>signIn("google")} className="rounded px-6 py-2 shadow cursor-pointer bg-gray-50 grid place-items-center mx-auto mb-8">
+                <div
+                  onClick={() => signIn('google')}
+                  className="rounded px-6 py-2 shadow cursor-pointer bg-gray-50 grid place-items-center mx-auto mb-8"
+                >
                   <Image src={google} alt="bg" width={100} height={100} />
-                </div>{" "}
-
+                </div>{' '}
                 <div className="text-lg text-slate-900 font-medium">
                   <span>Have an account?</span>
                   <a href="/" className="text-[#5D7DF3] pl-3 hover:underline">
