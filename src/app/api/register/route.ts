@@ -7,7 +7,7 @@ connect();
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, password, imageURL } = await request.json();
+    const { name, email, password, image } = await request.json();
     console.log("request", request);
     
 
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       name,
       email,
       password: hashedPassword,
-      imageURL
+      image
     });
 
     const savedUser = await newUser.save();

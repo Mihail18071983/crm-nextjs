@@ -18,7 +18,7 @@ const Signup = () => {
     name: '',
     email: '',
     password: '',
-    imageURL: '',
+    image: '',
   });
   const [imagePath, setImagePath] = useState('');
   const [selectedFile, setSelectedFile] = useState<File>();
@@ -45,7 +45,7 @@ const Signup = () => {
       }
       const res = await axios.post('/api/register', {
         ...user,
-        imageURL: imagePath,
+        image: imagePath,
       });
       console.log(res.data);
       if (res.status == 200 || res.status == 201) {
@@ -67,7 +67,7 @@ const Signup = () => {
         name: '',
         email: '',
         password: '',
-        imageURL: '',
+        image: '',
       });
     }
   };
