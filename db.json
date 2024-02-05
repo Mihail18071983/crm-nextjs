@@ -81,6 +81,19 @@
       "countryTitle": "Australia",
       "id": "Kd3Pz2J",
       "hasPromotions": true
+    },
+    {
+      "title": "qqq",
+      "description": "Sale fpr discount",
+      "status": "pending",
+      "joinedDate": "2024-01-30",
+      "categoryId": "3",
+      "countryId": "3",
+      "avatar": "/images\\10.jpg",
+      "categoryTitle": "sales",
+      "countryTitle": "USA",
+      "id": "wavuusl",
+      "hasPromotions": true
     }
   ],
   "summary-stats": {
@@ -195,6 +208,15 @@
       "companyId": "Kd3Pz2J",
       "companyTitle": "dog",
       "id": 10
+    },
+    {
+      "title": "xxx",
+      "description": "bog boss company",
+      "discount": 30,
+      "avatar": "/images\\11.jpg",
+      "companyId": "wavuusl",
+      "companyTitle": "qqq",
+      "id": 11
     }
   ],
   "categories": [

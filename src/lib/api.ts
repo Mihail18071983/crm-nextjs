@@ -55,7 +55,7 @@ export interface Promotion {
 }
 
 const buildUrl = (...paths: string[]) =>
-  `http://localhost:4000/${paths.join('/')}`;
+  `http://localhost:3300/${paths.join('/')}`;
 
 const stringifyQueryParams = (params: Record<string, string>) =>
   new URLSearchParams(params).toString();
