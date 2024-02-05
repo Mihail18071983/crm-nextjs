@@ -94,6 +94,18 @@
       "countryTitle": "USA",
       "id": "wavuusl",
       "hasPromotions": true
+    },
+    {
+      "title": "ggg",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et",
+      "status": "pending",
+      "joinedDate": "2024-02-02",
+      "categoryId": "4",
+      "countryId": "5",
+      "avatar": "/images\\11.jpg",
+      "categoryTitle": "logistics",
+      "countryTitle": "France",
+      "id": "Aypg0j_"
     }
   ],
   "summary-stats": {
