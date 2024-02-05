@@ -13,6 +13,9 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
+  imageURL: {
+   type:String,
+ }
 });
 
 const User = mongoose.models.user || mongoose.model("user", userSchema)

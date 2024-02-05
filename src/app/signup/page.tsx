@@ -8,6 +8,8 @@ import logo from '../../../public/images/logo.png';
 import google from '../../../public/icons/google2.svg';
 import axios from 'axios';
 import { signIn } from 'next-auth/react';
+import LogoUploader from '@/app/components/logo-uploader';
+import { handleUpload, handleFileChange } from '@/lib/utils/handeFiles';
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
@@ -16,7 +18,10 @@ const Signup = () => {
     name: '',
     email: '',
     password: '',
+    imageURL: '',
   });
+  const [imagePath, setImagePath] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File>();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -26,7 +31,9 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     console.log(user);
+
     try {
+      const { imagePath } = await handleUpload(selectedFile!, setImagePath);
       if (!user.name || !user.email || !user.password) {
         setError('please fill all the fields');
         return;
@@ -36,7 +43,10 @@ const Signup = () => {
         setError('invalid email id');
         return;
       }
-      const res = await axios.post('/api/register', user);
+      const res = await axios.post('/api/register', {
+        ...user,
+        imageURL: imagePath,
+      });
       console.log(res.data);
       if (res.status == 200 || res.status == 201) {
         console.log('user added successfully');
@@ -57,6 +67,7 @@ const Signup = () => {
         name: '',
         email: '',
         password: '',
+        imageURL: '',
       });
     }
   };
@@ -129,6 +140,14 @@ const Signup = () => {
                     onChange={handleInputChange}
                   />
                 </div>
+                <LogoUploader
+                  onFileChange={(event) =>
+                    handleFileChange(event, setSelectedFile, setImagePath)
+                  }
+                  selectedImage={imagePath}
+                  label="Logo"
+                  placeholder="Upload photo"
+                />
                 <div className="grid place-items-center w-full mx-auto pt-7">
                   {error && <p className="py-6 text-lg">{error}</p>}
                   <button
