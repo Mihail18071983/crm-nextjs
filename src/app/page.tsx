@@ -1,13 +1,20 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../../public/images/logo.png';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/utils/config/auth';
+import { redirect } from 'next/navigation';
 
 const links = [
   { id: '1', path: '/signin', name: 'Sign in' },
   { id: '2', path: '/signup', name: 'Sign up' },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+    if (session) { 
+      redirect('/dashboard')
+  }
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -26,7 +33,7 @@ export default function Home() {
                   We are a company dedicated to providing high-quality services.
                 </p>
               </div>
-              <div className="w-fit mx-auto gap-6 flex items-center content-between pt-8 md:space-y-5">
+              <div className="w-fit mx-auto gap-6 flex items-center content-between pt-8">
                 {links.map((link) => (
                   <Link
                     key={link.id}

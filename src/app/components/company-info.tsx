@@ -45,7 +45,7 @@ export default function CompanyInfo({ companyId }: CompanyInfoProps) {
       data: { hasPromotions: promotions.length > 0 },
     });
   }
-}, [promotions, companyId]);
+}, [promotions, companyId, updateCompany]);
 
  
   if (!company) return null;

@@ -8,7 +8,7 @@
 //     secret: process.env.NEXTAUTH_SECRET,
 //   });
 
-//   const publicPaths = path === "/" || path === "/signup";
+//   const publicPaths = path === "/" || path === "/signup" || path === "/sigin";
 
 //   if (publicPaths && token) {
 //     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
